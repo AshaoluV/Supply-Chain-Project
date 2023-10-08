@@ -1,147 +1,301 @@
-select * from chain;
+SELECT 
+* 
+FROM chain
+;
 
-->Revenue
-select cast(sum(`Revenue generated`) as decimal(8,2))Revenue from chain;
+/*Revenue*/
+SELECT 
+    CAST(SUM(`Revenue generated`) 
+    AS DECIMAL(8,2))Revenue 
+FROM chain
+;
 
-->Revenue By Product Type 
-select `Product Type`, cast(sum(`Revenue generated`) as decimal(8,2))Revenue from chain
-group by `Product Type`
-order by Revenue desc;
+/*Revenue By Product Type*/ 
+SELECT 
+      `Product Type`, CAST(SUM(`Revenue generated`) 
+      AS DECIMAL(8,2))Revenue 
+FROM chain
+GROUP BY `Product Type`
+ORDER BY Revenue
+DESC
+;
 
->Revenue By Location 
-select location, cast(sum(`Revenue generated`) as decimal(8,2))Revenue from chain
-group by location
-order by Revenue desc;
+/*Revenue By Location*/ 
+SELECT 
+      location, 
+      CAST(SUM(`Revenue generated`) 
+      AS DECIMAL(8,2))Revenue 
+FROM chain
+GROUP BY location
+ORDER BY Revenue 
+DESC
+;
 
-->Revenue Contribution Percentage
-select location, cast(sum(`Revenue generated`)as decimal(8,2))`Revenue`,
-cast(sum(`Revenue generated`)*100/(select sum(`Revenue generated`) from chain)as decimal(4,2))'%Revenue Contribution'
-from chain 
-group by location
-order by `Revenue` desc;
+/*Revenue Contribution Percentage*/
+SELECT 
+      location, 
+      CAST(SUM(`Revenue generated`) 
+      AS DECIMAL (8,2))`Revenue`,
+      CAST(SUM(`Revenue generated`)*100/(SELECT SUM(`Revenue generated`) FROM chain) 
+      AS DECIMAL(4,2))'%Revenue Contribution'
+FROM chain 
+GROUP BY location
+ORDER BY `Revenue`
+DESC
+;
 
-->Stock Levels & lead Times
-select sum(`stock levels`)'Stock Levels', sum(`Lead Times`)'Lead Times' from chain;
+/*Stock Levels & lead Times*/
+SELECT 
+      SUM(`stock levels`)'Stock Levels', 
+      SUM(`Lead Times`)'Lead Times'  
+FROM chain
+;
 
-->Order Quantities 
-select sum(`Order quantities`)'Order Quantities' from chain;
+/*Order Quantities*/ 
+SELECT 
+      SUM(`Order quantities`)'Order Quantities' 
+FROM chain
+;
 
-->Order Quantities By Location
-select location, sum(`Order quantities`)`Order Quantities` from chain
-group by location
-order by `Order Quantities` desc;
+/*Order Quantities By Location*/
+SELECT 
+      location, 
+      SUM(`Order quantities`)`Order Quantities` 
+FROM chain
+GROUP BY location
+ORDER BY `Order Quantities`
+DESC
+;
 
-->Most Costly Products to Produce
-select `product type`,cast(sum(`Manufacturing costs`) as decimal(6,2))`Manufacturing costs` from chain
-group by `product type` 
-Order by `product type` desc;
+/*Most Costly Products to Produce*/
+SELECT 
+      `product type`,
+      CAST(SUM(`Manufacturing costs`) 
+      AS DECIMAL(6,2))`Manufacturing costs` 
+FROM chain
+GROUP BY `product type` 
+ORDER BY `product type`
+DESC
+;
 
-->Relation of Manufacturating cost to selling price 
-select `product type`, cast(sum(price) as decimal(6,2))Price,
-cast(sum(`Manufacturing costs`) as decimal(6,2))`Manufacturing costs`,
-cast((sum(price)-sum(`Manufacturing costs`))as decimal(5,2))'Relation of Manufacturating cost to selling price'
-from chain 
-group by `product type`
-order by `product type`;
+/*Relation of Manufacturating cost to selling price*/ 
+SELECT 
+      `product type`,
+      CAST(SUM(price) AS DECIMAL(6,2))Price,
+      CAST(SUM(`Manufacturing costs`) 
+      AS DECIMAL(6,2))`Manufacturing costs`,
+      CAST((sum(price)-sum(`Manufacturing costs`)) 
+      AS DECIMAL(5,2))'Relation of Manufacturating cost to selling price'
+FROM chain 
+GROUP BY `product type`
+ORDER BY `product type`
+;
 
-->Overall Profitability of Product
-select `product type`, cast(sum(`Revenue generated`) as decimal(8,2))Revenue, 
-cast(sum(costs)as decimal(7,2))Cost,
-cast((sum(`Revenue generated`)-sum(costs))as decimal(8,2))Profit from chain
-group by `product type`
-order by `product type`;
+/*->Overall Profitability of Product*/
+SELECT
+      `product type`, 
+      CAST(SUM(`Revenue generated`)
+      AS DECIMAL(8,2))Revenue, 
+      CAST(SUM(costs) 
+      AS DECIMAL(7,2))Cost,
+      CAST((SUM(`Revenue generated`)-sum(costs)) 
+      AS DECIMAL(8,2))Profit 
+FROM  chain
+GROUP BY `product type`
+ORDER BY `product type`
+;
 
-->Profit By Product
-select `Product Type`, cast(sum(`Profit`) as decimal(8,2))`Profit` from chain
-group by `Product Type`
-order by `Profit` desc;
+/*->Profit By Product*/
+SELECT 
+      `Product Type`, 
+      CAST(SUM(`Profit`) AS DECIMAL(8,2))`Profit` 
+FROM chain
+GROUP BY `Product Type`
+ORDER BY `Profit` DESC
+;
 
-->Profit by Location
-select location, cast(sum(`Profit`) as decimal(8,2))`Profit` from chain
-group by location
-order by `Profit` desc;
+/*Profit by Location*/
+SELECT 
+      location, 
+      CAST(SUM(`Profit`) 
+      AS DECIMAL(8,2))`Profit` 
+FROM chain
+GROUP BY location
+ORDER BY `Profit`
+DESC
+;
 
-->Profit Contribution %
-select location, cast(sum(`Profit`)as decimal(8,2))`Profit`,
-cast(sum(`Profit`)*100/(select sum(`Profit`) from chain)as decimal(8,2))'%Profit Contribution'
-from chain 
-group by location
-order by `Profit` desc;
+/* Profit Contribution % */
+SELECT 
+      location, 
+      CAST(SUM(`Profit`) 
+      AS DECIMAL(8,2))`Profit`,
+	  CAST(SUM(`Profit`)*100/(SELECT SUM(`Profit`) FROM chain) 
+      AS DECIMAL(8,2))'%Profit Contribution'
+FROM chain 
+GROUP BY location
+ORDER BY `Profit`
+DESC
+;
 
-->Average Leadtime 
-select `Product type`, cast((sum(`Lead times`)/count(`Lead times`))as decimal(4,2))'Average Leadtime' from chain
-group by `Product type`;
+/* Average Leadtime */ 
+SELECT
+	  `Product type`,
+      CAST((SUM(`Lead times`)/COUNT(`Lead times`)) 
+      AS DECIMAL(4,2))'Average Leadtime' 
+FROM chain
+GROUP BY `Product type`
+;
 
-->How Leadtime Affects Stock Levels and Availability
- select sum(`Lead Times`)`Lead Times`, Sum(`Stock Levels`)`Stock Levels`,
- sum(`Availability`)`Availability` from chain;
+/* How Leadtime Affects Stock Levels and Availability */
+ SELECT 
+       SUM(`Lead Times`)`Lead Times`, 
+       SUM(`Stock Levels`)`Stock Levels`,
+	   SUM(`Availability`)`Availability` 
+FROM chain
+;
 
-->Correlation Between Inspection Result and Defect Rate 
-select `inspection results`, cast(sum(`Defect Rates`) as decimal(4,2))`Defect Rates`, 
-cast(sum(`Defect Rates`)*100/(select sum(`Defect Rates`) from chain)as decimal(4,2)) '%Of Defect Rate',
-cast(sum(`Defect Rates`)/count(`Defect Rates`) as decimal(3,2))'Average Defect Rate'
-from chain
-group by `inspection results`
-order by `Defect Rates` desc;
+/* Correlation Between Inspection Result and Defect Rate */ 
+SELECT 
+      `inspection results`,
+      CAST(SUM(`Defect Rates`) 
+      AS DECIMAL(4,2))`Defect Rates`, 
+      CAST(SUM(`Defect Rates`)*100/(SELECT SUM(`Defect Rates`) FROM chain) 
+      AS DECIMAL(4,2)) '%Of Defect Rate',
+      CAST(SUM(`Defect Rates`)/count(`Defect Rates`) 
+      AS DECIMAL(3,2))'Average Defect Rate'
+FROM chain
+GROUP BY `inspection results`
+ORDER BY `Defect Rates` 
+DESC
+;
 
-->Most Common Transport Modes Used
-select max(`transportation modes`)'Transportation Modes'from chain;
+/* Most Common Transport Modes Used */
+SELECT 
+      MAX(`transportation modes`)'Transportation Modes'
+FROM chain
+;
 
-->How Transportation Modes Affect Lead Time and Cost
-select `Transportation Modes`, sum(`lead times`)'Lead Times', cast(sum(cost) as decimal(9,2))'Cost'
-from chain
-group by `Transportation Modes`; 
+/*How Transportation Modes Affect Lead Time and Cost*/
+SELECT 
+      `Transportation Modes`,
+      SUM(`lead times`)'Lead Times',
+      CAST(SUM(cost) AS DECIMAL(9,2))'Cost'
+FROM chain
+GROUP BY `Transportation Modes`
+; 
 
--Most Common Routes Used
-select max(`Routes`)'Route' from chain;
+/* Most Common Routes Used */
+SELECT 
+      max(`Routes`)'Route' 
+FROM chain
+;
 
-->Impact of Different Routes on Costs and Lead Times 
-select `Routes`, sum(`lead times`)'Lead Times', convert(sum(cost),decimal(8,2))'Cost'
-from chain
-group by `Routes`
-order by `lead times`desc; 
+/* Impact of Different Routes on Costs and Lead Times */ 
+SELECT 
+      `Routes`, 
+      SUM(`lead times`)'Lead Times', 
+      CONVERT(sum(cost), 
+      DECIMAL(8,2))'Cost'
+FROM chain
+GROUP BY `Routes`
+ORDER BY `lead times`
+DESC
+; 
 
-->Average Defect Rate For Each Product
-select `product type`, 
-cast(sum(`Defect rates`)/count(`Defect rates`) as decimal (3,2))'Average Defect Rate' 
-from chain
-group by `product type`;
+/* Average Defect Rate For Each Product */
+SELECT 
+      `product type`, 
+      CAST(SUM(`Defect rates`)/COUNT(`Defect rates`) 
+      AS DECIMAL (3,2))'Average Defect Rate' 
+FROM chain
+GROUP BY `product type`
+;
 
-->Correlation of Inspection Result and Manufacturing Cost 
-select `Inspection results`, cast(sum(`Manufacturing costs`) as decimal(6,2))`Manufacturing Costs`, 
-cast((sum(`Manufacturing costs`)*100/(select sum(`Manufacturing costs`) from chain))as decimal(4,2))`%Manufacturing Costs` 
-from chain 
-group by `Inspection results`
-order by `Manufacturing costs` desc;
+/* Correlation of Inspection Result and Manufacturing Cost */ 
+SELECT 
+      `Inspection results`, 
+      CAST(SUM(`Manufacturing costs`) 
+      AS DECIMAL(6,2))`Manufacturing Costs`, 
+      CAST((SUM(`Manufacturing costs`)*100/(SELECT SUM(`Manufacturing costs`) FROM chain))
+      AS DECIMAL(4,2))`%Manufacturing Costs` 
+FROM chain 
+GROUP BY `Inspection results`
+ORDER BY `Manufacturing costs` 
+DESC
+;
 
-->How Production Volume Relates To Stock Levels and Quantity
-select sum(`Production Volumes`)`Production Volumes`,
-sum(`Stock levels`)`Stock levels`,sum(`Order Quantities`)`Order Quantities` from chain;
+/*How Production Volume Relates To Stock Levels and Quantity*/
+SELECT
+      SUM(`Production Volumes`)`Production Volumes`,
+      SUM(`Stock levels`)`Stock levels`,
+      SUM(`Order Quantities`)`Order Quantities` 
+FROM chain
+;
 
-->Production Volumes Alinged With Market Demands
-select `Location`, sum(`Production volumes`)`Production Volume` from chain
-group by `Location`
-order by `Production Volume` desc;
+/* Production Volumes Alinged With Market Demands */
+SELECT 
+      `Location`, 
+      SUM(`Production volumes`)`Production Volume`
+FROM chain
+GROUP BY `Location`
+ORDER BY `Production Volume` 
+DESC
+;
 
-->Percentage of Production Volumes Alinged With Market Demands
-select `Location`, sum(`Production volumes`)`Production Volume`,
-(sum(`Production volumes`)*100/(select sum(`Production volumes`) from chain))'%ProductionVolume'
-from chain
-group by `Location`
-order by `Production Volume` desc;
+/* Percentage of Production Volumes Alinged With Market Demands */
+SELECT 
+      `Location`, 
+      SUM(`Production volumes`)`Production Volume`,
+	  (sum(`Production volumes`)*100/(select sum(`Production volumes`) from chain))'%ProductionVolume'
+FROM chain
+GROUP BY `Location`
+ORDER BY `Production Volume`
+DESC 
+;
 
-*>/ Profit and Manufacturing Cost To Price Columns Were Added, 
-with certain Data Definition & Manipulation/>* 
+/* Profit and Manufacturing Cost To Price Columns Were Added  
+with certain Data Definition & Manipulation */ 
 
-select SKU, (sum(`Revenue generated`) - sum(Costs))'Profit' from chain
-group by SKU;
+SELECT 
+      SKU, 
+      (SUM(`Revenue generated`) - SUM(Costs))'Profit'
+FROM chain
+GROUP BY SKU;
 
-alter table chain change costs TotalCost int not null;
-Alter Table chain add column Profit int;
-Alter Table chain add column `Manufacturing Cost To Price` double;
-update chain set Profit = (`Revenue generated`) - (Costs);
-update chain set `Manufacturing Cost To Price` = (`Price`) - (`Manufacturing Costs`);
-alter table chain modify Totalcost double;
-alter table chain modify `Manufacturing Cost To Price` decimal(4,2);
-desc chain;
-select * from chain;
+ALTER TABLE chain 
+CHANGE costs 
+	   TotalCost INT NOT NULL
+;
+
+ALTER TABLE chain 
+ADD COLUMN Profit INT
+;
+
+ALTER TABLE chain 
+ADD COLUMN `Manufacturing Cost To Price` DOUBLE
+;
+
+UPDATE chain 
+SET Profit = (`Revenue generated`) - (Costs)
+;
+
+UPDATE CHAIN 
+SET `Manufacturing Cost To Price` = (`Price`) - (`Manufacturing Costs`)
+;
+
+ALTER TABLE chain 
+MODIFY Totalcost DOUBLE
+;
+
+ALTER TABLE chain 
+MODIFY `Manufacturing Cost To Price` decimal(4,2)
+;
+ 
+DESC chain
+;
+
+SELECT 
+* 
+FROM chain
+;
