@@ -2,13 +2,17 @@ SELECT
 * 
 FROM chain
 ;
-
+~~~ SQL
 /* Revenue */
 SELECT 
     CAST(SUM(`Revenue generated`) 
     AS DECIMAL(8,2))Revenue 
 FROM chain
 ;
+~~~ 
+**Epig**
+|---|---|
+|mad|nice|
 
 /* Revenue By Product Type */ 
 SELECT 
