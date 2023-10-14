@@ -13,6 +13,7 @@ FROM chain
 |-----------|
 | 577604.82 |
 
+
 /* Revenue By Product Type */ 
 SELECT 
       `Product Type`, CAST(SUM(`Revenue generated`) 
