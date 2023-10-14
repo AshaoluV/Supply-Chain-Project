@@ -9,9 +9,11 @@ SELECT
     AS DECIMAL(8,2))Revenue 
 FROM chain
 ;
++-----------+
 | Revenue   |
-|-----------|
++-----------+
 | 577604.82 |
++-----------+
 
 
 /* Revenue By Product Type */ 
