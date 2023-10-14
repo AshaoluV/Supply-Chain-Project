@@ -236,7 +236,7 @@ DESC
 ;
 ~~~
 
-| **location**  | **Profit** | **%Profit Contribution** |
+| **Location**  | **Profit** | **%Profit Contribution** |
 |-----------|--------|----------------------|
 | Mumbai    | 128332 | 24.46                |
 | Kolkata   | 124794 | 23.78                |
