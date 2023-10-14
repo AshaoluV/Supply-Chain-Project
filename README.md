@@ -97,5 +97,8 @@ The analysis seeks to answer the following questions:
 4. Profit from different location
 5. Profit by product type
 6. Profit contribution percentage from different location 
-7. Revenue generated and their profit margin 
+7. Revenue generated and their profit margin
+
+
+   
 
