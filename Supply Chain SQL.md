@@ -46,7 +46,7 @@ ORDER BY Revenue
 DESC
 ;
 ~~~
-| **location**  | **Revenue**   |
+| **Location**  | **Revenue**   |
 |-----------|-----------|
 | Mumbai    | 137755.03 |
 | Kolkata   | 137077.55 |
@@ -69,7 +69,7 @@ ORDER BY `Revenue`
 DESC
 ;
 ~~~
-| **location**  | **Revenue**   | **%Revenue Contribution** |
+| **Location**  | **Revenue**   | **%Revenue Contribution** |
 |-----------|-----------|-----------------------|
 | Mumbai    | 137755.03 | 23.85                 |
 | Kolkata   | 137077.55 | 23.73                 |
@@ -115,7 +115,7 @@ DESC
 ;
 ~~~
 
-| **location** | **Order Quantities** |
+| **Location** | **Order Quantities** |
 |-----------|------------------|
 | Kolkata   | 1228             |
 | Chennai   | 1109             |
@@ -135,7 +135,7 @@ ORDER BY `product type`
 DESC
 ;
 ~~~
-| **product type** | **Manufacturing costs** |
+| **Product type** | **Manufacturing costs** |
 |--------------|---------------------|
 | skincare     | 1959.73             |
 | haircare     | 1647.57             |
@@ -156,7 +156,7 @@ GROUP BY `product type`
 ORDER BY `product type`
 ;
 ~~~
-| **product type** | **Price**   | **Manufacturing costs** | **Relation of Manufacturating cost to selling price** |
+| **Product type** | **Price**   | **Manufacturing costs** | **Relation of Manufacturating cost to selling price** |
 |--------------|---------|---------------------|---------------------------------------------------|
 | cosmetics    | 1491.39 | 1119.37             | 372.02                                            |
 | haircare     | 1564.49 | 1647.57             | -83.09                                            |
@@ -178,7 +178,7 @@ GROUP BY `product type`
 ORDER BY `product type`
 ;
 ~~~
-| **product type** | **Revenue**   | **Cost**  | **Profit**    |
+| **Product type** | **Revenue**   | **Cost**  | **Profit**    |
 |--------------|-----------|-------|-----------|
 | cosmetics    | 161521.27 | 13365 | 148156.27 |
 | haircare     | 174455.39 | 17330 | 157125.39 |
@@ -291,7 +291,7 @@ ORDER BY `Defect Rates`
 DESC
 ;
 ~~~
-| **inspection results** | **Defect Rates** | **%Of Defect Rate** | **Average Defect Rate** |
+| **Inspection results** | **Defect Rates** | **%Of Defect Rate** | **Average Defect Rate** |
 |--------------------|--------------|-----------------|---------------------|
 | Fail               | 92.49        | 40.62           | 2.57                |
 | Pending            | 88.32        | 38.79           | 2.15                |
@@ -332,13 +332,16 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Route**   |
+|---------|
+| Route C |
 
 ~~~ SQL
 /* Impact of Different Routes on Costs and Lead Times */ 
 SELECT 
       `Routes`, 
       SUM(`lead times`)'Lead Times', 
-      CONVERT(SUM(cost), 
+      CONVERT(SUM(costs), 
       DECIMAL(8,2))'Cost'
 FROM chain
 GROUP BY `Routes`
@@ -346,6 +349,11 @@ ORDER BY `lead times`
 DESC
 ; 
 ~~~
+| **Routes**  | **Lead Times** | **Cost**  |
+|---------|------------|-------|
+| Route B | 637        | 22040 |
+| Route A | 632        | 20875 |
+| Route C | 327        | 10009 |
 
 ~~~ SQL
 /* Average Defect Rate For Each Product */
@@ -357,6 +365,12 @@ FROM chain
 GROUP BY `product type`
 ;
 ~~~
+| **Product type** | **Average Defect Rate** |
+|--------------|---------------------|
+| haircare     | 2.48                |
+| skincare     | 2.33                |
+| cosmetics    | 1.92                |
+|              |                     |
 
 ~~~ SQL
 /* Correlation of Inspection Result and Manufacturing Cost */ 
@@ -372,6 +386,11 @@ ORDER BY `Manufacturing costs`
 DESC
 ;
 ~~~
+| **Inspection results** | **Manufacturing Costs** | **%Manufacturing Costs** |
+|--------------------|---------------------|----------------------|
+| Fail               | 1880.3              | 39.78                |
+| Pending            | 1785.07             | 37.77                |
+| Pass               | 1061.3              | 22.45                |
 
 ~~~ SQL
 /*How Production Volume Relates To Stock Levels and Quantity*/
@@ -382,6 +401,9 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Production Volumes** | **Stock levels** | **Order Quantities** |
+|--------------------|--------------|------------------|
+| 56784              | 4777         | 4922             |
 
 ~~~ SQL
 /* Production Volumes Alinged With Market Demands */
@@ -394,6 +416,13 @@ ORDER BY `Production Volume`
 DESC
 ;
 ~~~
+| **Location**  | **Production Volume** |
+|-----------|-------------------|
+| Kolkata   | 15451             |
+| Mumbai    | 13160             |
+| Chennai   | 11984             |
+| Delhi     | 8362              |
+| Bangalore | 7827              |
 
 ~~~ SQL
 /* Percentage of Production Volumes Alinged With Market Demands */
@@ -407,6 +436,13 @@ ORDER BY `Production Volume`
 DESC 
 ;
 ~~~
+| **Location**  | **Production Volume** | **%ProductionVolume** |
+|-----------|-------------------|-------------------|
+| Kolkata   | 15451             | 27.2101           |
+| Mumbai    | 13160             | 23.1755           |
+| Chennai   | 11984             | 21.1045           |
+| Delhi     | 8362              | 14.726            |
+| Bangalore | 7827              | 13.7838           |
 
 ~~~ SQL
 /* Profit and Manufacturing Cost To Price Columns Were Added  
