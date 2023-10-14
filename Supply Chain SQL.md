@@ -1,15 +1,20 @@
+~~~ SQL
 SELECT 
 * 
 FROM chain
 ;
-
+~~~ 
+	
+~~~ SQL	
 /* Revenue */
 SELECT 
     CAST(SUM(`Revenue generated`) 
     AS DECIMAL(8,2))Revenue 
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /* Revenue By Product Type */ 
 SELECT 
       `Product Type`, CAST(SUM(`Revenue generated`) 
@@ -19,7 +24,8 @@ GROUP BY `Product Type`
 ORDER BY Revenue
 DESC
 ;
-
+~~~
+~~~ SQL
 /* Revenue By Location */ 
 SELECT 
       location, 
@@ -30,7 +36,9 @@ GROUP BY location
 ORDER BY Revenue 
 DESC
 ;
+~~~
 
+~~~SQL
 /* Revenue Contribution Percentage */
 SELECT 
       location, 
@@ -43,20 +51,26 @@ GROUP BY location
 ORDER BY `Revenue`
 DESC
 ;
+~~~
 
+~~~ SQL
 /* Stock Levels & lead Times */
 SELECT 
       SUM(`stock levels`)'Stock Levels', 
       SUM(`Lead Times`)'Lead Times'  
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /* Order Quantities */ 
 SELECT 
       SUM(`Order quantities`)'Order Quantities' 
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /* Order Quantities By Location */
 SELECT 
       location, 
@@ -66,7 +80,8 @@ GROUP BY location
 ORDER BY `Order Quantities`
 DESC
 ;
-
+~~~
+~~~ SQL
 /* Most Costly Products to Produce */
 SELECT 
       `product type`,
@@ -77,7 +92,9 @@ GROUP BY `product type`
 ORDER BY `product type`
 DESC
 ;
+~~~
 
+~~~ SQL
 /* Relation of Manufacturating cost to selling price */ 
 SELECT 
       `product type`,
@@ -90,7 +107,9 @@ FROM chain
 GROUP BY `product type`
 ORDER BY `product type`
 ;
+~~~
 
+~~~ SQL
 /* Overall Profitability of Product */
 SELECT
       `product type`, 
@@ -104,7 +123,9 @@ FROM  chain
 GROUP BY `product type`
 ORDER BY `product type`
 ;
+~~~
 
+~~~ SQL
 /* Profit By Product */
 SELECT 
       `Product Type`, 
@@ -113,7 +134,9 @@ FROM chain
 GROUP BY `Product Type`
 ORDER BY `Profit` DESC
 ;
+~~~
 
+~~~ SQL
 /* Profit by Location */
 SELECT 
       location, 
@@ -124,7 +147,9 @@ GROUP BY location
 ORDER BY `Profit`
 DESC
 ;
+~~~
 
+~~~ SQL
 /* Profit Contribution% */
 SELECT 
       location, 
@@ -137,7 +162,9 @@ GROUP BY location
 ORDER BY `Profit`
 DESC
 ;
+~~~
 
+~~~ SQL 
 /* Average Leadtime */ 
 SELECT
 	  `Product type`,
@@ -146,7 +173,9 @@ SELECT
 FROM chain
 GROUP BY `Product type`
 ;
+~~~
 
+~~~SQL
 /* How Leadtime Affects Stock Levels and Availability */
  SELECT 
        SUM(`Lead Times`)`Lead Times`, 
@@ -154,7 +183,9 @@ GROUP BY `Product type`
 	   SUM(`Availability`)`Availability` 
 FROM chain
 ;
+~~~
 
+~~~SQL
 /* Correlation Between Inspection Result and Defect Rate */ 
 SELECT 
       `inspection results`,
@@ -169,13 +200,17 @@ GROUP BY `inspection results`
 ORDER BY `Defect Rates` 
 DESC
 ;
+~~~
 
+~~~ SQL
 /* Most Common Transport Modes Used */
 SELECT 
       MAX(`transportation modes`)'Transportation Modes'
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /*How Transportation Modes Affect Lead Time and Cost*/
 SELECT 
       `Transportation Modes`,
@@ -184,13 +219,17 @@ SELECT
 FROM chain
 GROUP BY `Transportation Modes`
 ; 
+~~~
 
+~~~ SQL
 /* Most Common Routes Used */
 SELECT 
       MAX(`Routes`)'Route' 
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /* Impact of Different Routes on Costs and Lead Times */ 
 SELECT 
       `Routes`, 
@@ -202,7 +241,9 @@ GROUP BY `Routes`
 ORDER BY `lead times`
 DESC
 ; 
+~~~
 
+~~~ SQL
 /* Average Defect Rate For Each Product */
 SELECT 
       `product type`, 
@@ -211,7 +252,9 @@ SELECT
 FROM chain
 GROUP BY `product type`
 ;
+~~~
 
+~~~ SQL
 /* Correlation of Inspection Result and Manufacturing Cost */ 
 SELECT 
       `Inspection results`, 
@@ -224,7 +267,9 @@ GROUP BY `Inspection results`
 ORDER BY `Manufacturing costs` 
 DESC
 ;
+~~~
 
+~~~ SQL
 /*How Production Volume Relates To Stock Levels and Quantity*/
 SELECT
       SUM(`Production Volumes`)`Production Volumes`,
@@ -232,7 +277,9 @@ SELECT
       SUM(`Order Quantities`)`Order Quantities` 
 FROM chain
 ;
+~~~
 
+~~~ SQL
 /* Production Volumes Alinged With Market Demands */
 SELECT 
       `Location`, 
@@ -242,7 +289,9 @@ GROUP BY `Location`
 ORDER BY `Production Volume` 
 DESC
 ;
+~~~
 
+~~~ SQL
 /* Percentage of Production Volumes Alinged With Market Demands */
 SELECT 
       `Location`, 
@@ -253,7 +302,9 @@ GROUP BY `Location`
 ORDER BY `Production Volume`
 DESC 
 ;
+~~~
 
+~~~ SQL
 /* Profit and Manufacturing Cost To Price Columns Were Added  
 with certain Data Definition & Manipulation */ 
 
@@ -295,7 +346,11 @@ MODIFY `Manufacturing Cost To Price` decimal(4,2)
 DESC chain
 ;
 
+~~~
+~~~ SQL
 SELECT 
 * 
 FROM chain
 ;
+~~~
+~~
