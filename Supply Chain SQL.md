@@ -13,6 +13,9 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Revenue**   |
+|-----------|
+| 577604.82 |
 
 ~~~ SQL
 /* Revenue By Product Type */ 
@@ -25,6 +28,12 @@ ORDER BY Revenue
 DESC
 ;
 ~~~
+| **Product Type** | **Revenue**   |
+|--------------|-----------|
+| skincare     | 241628.16 |
+| haircare     | 174455.39 |
+| cosmetics    | 161521.27 |
+
 ~~~ SQL
 /* Revenue By Location */ 
 SELECT 
@@ -37,6 +46,14 @@ ORDER BY Revenue
 DESC
 ;
 ~~~
+| **location**  | **Revenue**   |
+|-----------|-----------|
+| Mumbai    | 137755.03 |
+| Kolkata   | 137077.55 |
+| Chennai   | 119142.82 |
+| Bangalore | 102601.72 |
+| Delhi     | 81027.7   |
+|           |           |
 
 ~~~SQL
 /* Revenue Contribution Percentage */
@@ -52,6 +69,14 @@ ORDER BY `Revenue`
 DESC
 ;
 ~~~
+| **location**  | **Revenue**   | **%Revenue Contribution** |
+|-----------|-----------|-----------------------|
+| Mumbai    | 137755.03 | 23.85                 |
+| Kolkata   | 137077.55 | 23.73                 |
+| Chennai   | 119142.82 | 20.63                 |
+| Bangalore | 102601.72 | 17.76                 |
+| Delhi     | 81027.7   | 14.03                 |
+|           |           |                       |
 
 ~~~ SQL
 /* Stock Levels & lead Times */
@@ -61,6 +86,10 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Stock Levels** | **Lead Times** |
+|--------------|------------|
+| 4777         | 1596       |
+|              |            |
 
 ~~~ SQL
 /* Order Quantities */ 
@@ -69,6 +98,10 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Order Quantities** |
+|------------------|
+| 4922             |
+|                  |
 
 ~~~ SQL
 /* Order Quantities By Location */
@@ -81,6 +114,15 @@ ORDER BY `Order Quantities`
 DESC
 ;
 ~~~
+
+| **location** | **Order Quantities** |
+|-----------|------------------|
+| Kolkata   | 1228             |
+| Chennai   | 1109             |
+| Mumbai    | 1083             |
+| Bangalore | 769              |
+| Delhi     | 733              |
+
 ~~~ SQL
 /* Most Costly Products to Produce */
 SELECT 
@@ -93,6 +135,12 @@ ORDER BY `product type`
 DESC
 ;
 ~~~
+| **product type** | **Manufacturing costs** |
+|--------------|---------------------|
+| skincare     | 1959.73             |
+| haircare     | 1647.57             |
+| cosmetics    | 1119.37             |
+|              |                     |
 
 ~~~ SQL
 /* Relation of Manufacturating cost to selling price */ 
@@ -108,6 +156,12 @@ GROUP BY `product type`
 ORDER BY `product type`
 ;
 ~~~
+| **product type** | **Price**   | **Manufacturing costs** | **Relation of Manufacturating cost to selling price** |
+|--------------|---------|---------------------|---------------------------------------------------|
+| cosmetics    | 1491.39 | 1119.37             | 372.02                                            |
+| haircare     | 1564.49 | 1647.57             | -83.09                                            |
+| skincare     | 1890.37 | 1959.73             | -69.35                                            |
+|              |         |                     |                                                   |
 
 ~~~ SQL
 /* Overall Profitability of Product */
@@ -124,6 +178,11 @@ GROUP BY `product type`
 ORDER BY `product type`
 ;
 ~~~
+| **product type** | **Revenue**   | **Cost**  | **Profit**    |
+|--------------|-----------|-------|-----------|
+| cosmetics    | 161521.27 | 13365 | 148156.27 |
+| haircare     | 174455.39 | 17330 | 157125.39 |
+| skincare     | 241628.16 | 22229 | 219399.16 |
 
 ~~~ SQL
 /* Profit By Product */
@@ -135,6 +194,11 @@ GROUP BY `Product Type`
 ORDER BY `Profit` DESC
 ;
 ~~~
+| **Product Type** | **Profit** |
+|--------------|--------|
+| skincare     | 219400 |
+| haircare     | 157125 |
+| cosmetics    | 148156 |
 
 ~~~ SQL
 /* Profit by Location */
@@ -148,6 +212,14 @@ ORDER BY `Profit`
 DESC
 ;
 ~~~
+| **Location**  | **Profit** |
+|-----------|--------|
+| Mumbai    | 128332 |
+| Kolkata   | 124794 |
+| Chennai   | 106707 |
+| Bangalore | 92041  |
+| Delhi     | 72807  |
+|           |        |
 
 ~~~ SQL
 /* Profit Contribution% */
@@ -164,6 +236,14 @@ DESC
 ;
 ~~~
 
+| **location**  | **Profit** | **%Profit Contribution** |
+|-----------|--------|----------------------|
+| Mumbai    | 128332 | 24.46                |
+| Kolkata   | 124794 | 23.78                |
+| Chennai   | 106707 | 20.34                |
+| Bangalore | 92041  | 17.54                |
+| Delhi     | 72807  | 13.88                |
+
 ~~~ SQL 
 /* Average Leadtime */ 
 SELECT
@@ -174,6 +254,12 @@ FROM chain
 GROUP BY `Product type`
 ;
 ~~~
+| **Product type** | **Average Leadtime** |
+|--------------|------------------|
+| haircare     | 15.53            |
+| skincare     | 16.7             |
+| cosmetics    | 15.38            |
+|              |                  |
 
 ~~~SQL
 /* How Leadtime Affects Stock Levels and Availability */
@@ -184,6 +270,10 @@ GROUP BY `Product type`
 FROM chain
 ;
 ~~~
+| **Lead Times** | **Stock Levels** | **Availability** |
+|------------|--------------|--------------|
+| 1596       | 4777         | 4840         |
+|            |              |              |
 
 ~~~SQL
 /* Correlation Between Inspection Result and Defect Rate */ 
@@ -201,6 +291,11 @@ ORDER BY `Defect Rates`
 DESC
 ;
 ~~~
+| **inspection results** | **Defect Rates** | **%Of Defect Rate** | **Average Defect Rate** |
+|--------------------|--------------|-----------------|---------------------|
+| Fail               | 92.49        | 40.62           | 2.57                |
+| Pending            | 88.32        | 38.79           | 2.15                |
+| Pass               | 46.9         | 20.59           | 2.04                |
 
 ~~~ SQL
 /* Most Common Transport Modes Used */
@@ -209,17 +304,26 @@ SELECT
 FROM chain
 ;
 ~~~
+| **Transportation Modes** |
+|----------------------|
+| Sea                  |
 
 ~~~ SQL
 /*How Transportation Modes Affect Lead Time and Cost*/
 SELECT 
       `Transportation Modes`,
       SUM(`lead times`)'Lead Times',
-      CAST(SUM(cost) AS DECIMAL(9,2))'Cost'
+      CAST(SUM(costs) AS DECIMAL(9,2))'Cost'
 FROM chain
 GROUP BY `Transportation Modes`
 ; 
 ~~~
+| **Transportation Modes** | **Lead Times** | **Cost**  |
+|----------------------|------------|-------|
+| Road                 | 497        | 16047 |
+| Air                  | 475        | 14606 |
+| Rail                 | 417        | 15169 |
+| Sea                  | 207        | 7102  |
 
 ~~~ SQL
 /* Most Common Routes Used */
