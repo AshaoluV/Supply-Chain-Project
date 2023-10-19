@@ -99,6 +99,8 @@ The analysis seeks to answer the following questions:
 6. Profit contribution percentage from different location 
 7. Revenue generated and their profit margin
 
+## Data Repository 
+- Acesss Report [HERE](https://drive.google.com/file/d/16k9r-4V7cAFCIUNA042nfieEzwLYOASY/view?usp=share_link)
 
    
 
