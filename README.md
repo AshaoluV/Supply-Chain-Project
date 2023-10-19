@@ -100,7 +100,8 @@ The analysis seeks to answer the following questions:
 7. Revenue generated and their profit margin
 
 ## Data Repository 
-- Acesss Report [HERE](https://drive.google.com/file/d/16k9r-4V7cAFCIUNA042nfieEzwLYOASY/view?usp=share_link)
+- Access Report [HERE](https://drive.google.com/file/d/16k9r-4V7cAFCIUNA042nfieEzwLYOASY/view?usp=share_link)
+- Access Dashboard [HERE](https://drive.google.com/file/d/151fGgsbjO-zqqKFs0iaeoeRXy9K2for9/view?usp=sharing)
 
    
 
