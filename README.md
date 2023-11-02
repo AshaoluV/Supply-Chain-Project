@@ -1,4 +1,4 @@
-# Supply-Chain-Analysis
+# Supply-Chain-Project
 
 # Abstract
 Dataset of 100 unique values for a Fashion and Beauty startup company, with different variables 
