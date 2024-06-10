@@ -1,8 +1,7 @@
 ~~~ SQL
 SELECT 
 * 
-FROM chain
-;
+FROM chain;
 ~~~ 
 	
 ~~~ SQL	
@@ -10,8 +9,7 @@ FROM chain
 SELECT 
     CAST(SUM(`Revenue generated`) 
     AS DECIMAL(8,2))Revenue 
-FROM chain
-;
+FROM chain;
 ~~~
 | **Revenue**   |
 |-----------|
@@ -25,8 +23,7 @@ SELECT
 FROM chain
 GROUP BY `Product Type`
 ORDER BY Revenue
-DESC
-;
+DESC;
 ~~~
 | **Product Type** | **Revenue**   |
 |--------------|-----------|
@@ -43,8 +40,7 @@ SELECT
 FROM chain
 GROUP BY location
 ORDER BY Revenue 
-DESC
-;
+DESC;
 ~~~
 | **Location**  | **Revenue**   |
 |-----------|-----------|
@@ -66,8 +62,7 @@ SELECT
 FROM chain 
 GROUP BY location
 ORDER BY `Revenue`
-DESC
-;
+DESC;
 ~~~
 | **Location**  | **Revenue**   | **%Revenue Contribution** |
 |-----------|-----------|-----------------------|
@@ -83,8 +78,7 @@ DESC
 SELECT 
       SUM(`stock levels`)'Stock Levels', 
       SUM(`Lead Times`)'Lead Times'  
-FROM chain
-;
+FROM chain;
 ~~~
 | **Stock Levels** | **Lead Times** |
 |--------------|------------|
@@ -95,8 +89,7 @@ FROM chain
 /* Order Quantities */ 
 SELECT 
       SUM(`Order quantities`)'Order Quantities' 
-FROM chain
-;
+FROM chain;
 ~~~
 | **Order Quantities** |
 |------------------|
@@ -111,8 +104,7 @@ SELECT
 FROM chain
 GROUP BY location
 ORDER BY `Order Quantities`
-DESC
-;
+DESC;
 ~~~
 
 | **Location** | **Order Quantities** |
@@ -132,8 +124,7 @@ SELECT
 FROM chain
 GROUP BY `product type` 
 ORDER BY `product type`
-DESC
-;
+DESC;
 ~~~
 | **Product type** | **Manufacturing costs** |
 |--------------|---------------------|
@@ -153,8 +144,7 @@ SELECT
       AS DECIMAL(5,2))'Relation of Manufacturating cost to selling price'
 FROM chain 
 GROUP BY `product type`
-ORDER BY `product type`
-;
+ORDER BY `product type`;
 ~~~
 | **Product type** | **Price**   | **Manufacturing costs** | **Relation of Manufacturating cost to selling price** |
 |--------------|---------|---------------------|---------------------------------------------------|
@@ -175,8 +165,7 @@ SELECT
       AS DECIMAL(8,2))Profit 
 FROM  chain
 GROUP BY `product type`
-ORDER BY `product type`
-;
+ORDER BY `product type`;
 ~~~
 | **Product type** | **Revenue**   | **Cost**  | **Profit**    |
 |--------------|-----------|-------|-----------|
@@ -191,8 +180,7 @@ SELECT
       CAST(SUM(`Profit`) AS DECIMAL(8,2))`Profit` 
 FROM chain
 GROUP BY `Product Type`
-ORDER BY `Profit` DESC
-;
+ORDER BY `Profit` DESC;
 ~~~
 | **Product Type** | **Profit** |
 |--------------|--------|
@@ -209,8 +197,7 @@ SELECT
 FROM chain
 GROUP BY location
 ORDER BY `Profit`
-DESC
-;
+DESC;
 ~~~
 | **Location**  | **Profit** |
 |-----------|--------|
@@ -232,8 +219,7 @@ SELECT
 FROM chain 
 GROUP BY location
 ORDER BY `Profit`
-DESC
-;
+DESC;
 ~~~
 
 | **Location**  | **Profit** | **%Profit Contribution** |
@@ -251,8 +237,7 @@ SELECT
       CAST((SUM(`Lead times`)/COUNT(`Lead times`)) 
       AS DECIMAL(4,2))'Average Leadtime' 
 FROM chain
-GROUP BY `Product type`
-;
+GROUP BY `Product type`;
 ~~~
 | **Product type** | **Average Leadtime** |
 |--------------|------------------|
@@ -267,8 +252,7 @@ GROUP BY `Product type`
        SUM(`Lead Times`)`Lead Times`, 
        SUM(`Stock Levels`)`Stock Levels`,
 	   SUM(`Availability`)`Availability` 
-FROM chain
-;
+FROM chain;
 ~~~
 | **Lead Times** | **Stock Levels** | **Availability** |
 |------------|--------------|--------------|
@@ -288,8 +272,7 @@ SELECT
 FROM chain
 GROUP BY `inspection results`
 ORDER BY `Defect Rates` 
-DESC
-;
+DESC;
 ~~~
 | **Inspection results** | **Defect Rates** | **%Of Defect Rate** | **Average Defect Rate** |
 |--------------------|--------------|-----------------|---------------------|
@@ -301,8 +284,7 @@ DESC
 /* Most Common Transport Modes Used */
 SELECT 
       MAX(`transportation modes`)'Transportation Modes'
-FROM chain
-;
+FROM chain;
 ~~~
 | **Transportation Modes** |
 |----------------------|
@@ -315,8 +297,7 @@ SELECT
       SUM(`lead times`)'Lead Times',
       CAST(SUM(costs) AS DECIMAL(9,2))'Cost'
 FROM chain
-GROUP BY `Transportation Modes`
-; 
+GROUP BY `Transportation Modes`; 
 ~~~
 | **Transportation Modes** | **Lead Times** | **Cost**  |
 |----------------------|------------|-------|
@@ -329,8 +310,7 @@ GROUP BY `Transportation Modes`
 /* Most Common Routes Used */
 SELECT 
       MAX(`Routes`)'Route' 
-FROM chain
-;
+FROM chain;
 ~~~
 | **Route**   |
 |---------|
@@ -346,8 +326,7 @@ SELECT
 FROM chain
 GROUP BY `Routes`
 ORDER BY `lead times`
-DESC
-; 
+DESC; 
 ~~~
 | **Routes**  | **Lead Times** | **Cost**  |
 |---------|------------|-------|
@@ -362,8 +341,7 @@ SELECT
       CAST(SUM(`Defect rates`)/COUNT(`Defect rates`) 
       AS DECIMAL (3,2))'Average Defect Rate' 
 FROM chain
-GROUP BY `product type`
-;
+GROUP BY `product type`;
 ~~~
 | **Product type** | **Average Defect Rate** |
 |--------------|---------------------|
@@ -383,8 +361,7 @@ SELECT
 FROM chain 
 GROUP BY `Inspection results`
 ORDER BY `Manufacturing costs` 
-DESC
-;
+DESC;
 ~~~
 | **Inspection results** | **Manufacturing Costs** | **%Manufacturing Costs** |
 |--------------------|---------------------|----------------------|
@@ -398,8 +375,7 @@ SELECT
       SUM(`Production Volumes`)`Production Volumes`,
       SUM(`Stock levels`)`Stock levels`,
       SUM(`Order Quantities`)`Order Quantities` 
-FROM chain
-;
+FROM chain;
 ~~~
 | **Production Volumes** | **Stock levels** | **Order Quantities** |
 |--------------------|--------------|------------------|
@@ -413,8 +389,7 @@ SELECT
 FROM chain
 GROUP BY `Location`
 ORDER BY `Production Volume` 
-DESC
-;
+DESC;
 ~~~
 | **Location**  | **Production Volume** |
 |-----------|-------------------|
@@ -433,8 +408,7 @@ SELECT
 FROM chain
 GROUP BY `Location`
 ORDER BY `Production Volume`
-DESC 
-;
+DESC;
 ~~~
 | **Location**  | **Production Volume** | **%ProductionVolume** |
 |-----------|-------------------|-------------------|
@@ -456,41 +430,32 @@ GROUP BY SKU;
 
 ALTER TABLE chain 
 CHANGE costs 
-	   TotalCost INT NOT NULL
-;
+	   TotalCost INT NOT NULL;
 
 ALTER TABLE chain 
-ADD COLUMN Profit INT
-;
+ADD COLUMN Profit INT;
 
 ALTER TABLE chain 
-ADD COLUMN `Manufacturing Cost To Price` DOUBLE
-;
+ADD COLUMN `Manufacturing Cost To Price` DOUBLE;
 
 UPDATE chain 
-SET Profit = (`Revenue generated`) - (Costs)
-;
+SET Profit = (`Revenue generated`) - (Costs);
 
 UPDATE CHAIN 
-SET `Manufacturing Cost To Price` = (`Price`) - (`Manufacturing Costs`)
-;
+SET `Manufacturing Cost To Price` = (`Price`) - (`Manufacturing Costs`);
 
 ALTER TABLE chain 
-MODIFY Totalcost DOUBLE
-;
+MODIFY Totalcost DOUBLE;
 
 ALTER TABLE chain 
-MODIFY `Manufacturing Cost To Price` decimal(4,2)
-;
+MODIFY `Manufacturing Cost To Price` decimal(4,2);
  
-DESC chain
-;
+DESC chain;
 
 ~~~
 ~~~ SQL
 SELECT 
 * 
-FROM chain
-;
+FROM chain;
 ~~~
 ~~
