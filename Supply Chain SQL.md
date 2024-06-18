@@ -454,8 +454,7 @@ DESC chain;
 
 ~~~
 ~~~ SQL
-SELECT 
-* 
+SELECT * 
 FROM chain;
 ~~~
 ~~
